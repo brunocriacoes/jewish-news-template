@@ -1,0 +1,1 @@
+<?php get_header(); ?><main id="conteudo" class="shell narrow section-block"><h1>Página não encontrada</h1><p>A página que procura não está disponível.</p><?php get_search_form(); ?></main><?php get_footer(); ?>
