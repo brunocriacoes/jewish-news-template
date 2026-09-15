@@ -47,3 +47,7 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 /* Logo sem recorte. */
 .brand{width:225px!important;height:54px!important}.brand img{width:225px!important;height:54px!important;object-fit:contain!important;object-position:left center!important}@media(max-width:850px){.brand{width:165px!important;height:48px!important}.brand img{width:165px!important;height:48px!important}}@media(max-width:390px){.brand{width:135px!important}.brand img{width:135px!important}}
 
+
+
+/* WordPress wraps every menu link in a list item. Preserve the original plain editorial navigation instead of applying the static HTML's last-link button rule to every item. */
+.nav .menu>li>a{background:transparent!important;color:var(--ink)!important;padding:0!important;border-radius:0!important;transform:none!important}.nav .menu>li>a::after{display:block!important}.nav .menu>li>a:hover{background:transparent!important;color:var(--gold)!important}.nav .menu>li.current-menu-item>a,.nav .menu>li.current_page_item>a{color:var(--ink)!important}.nav .menu>li.current-menu-item>a::after,.nav .menu>li.current_page_item>a::after{transform:scaleX(1)}
