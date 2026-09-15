@@ -47,7 +47,11 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 /* Logo sem recorte. */
 .brand{width:225px!important;height:54px!important}.brand img{width:225px!important;height:54px!important;object-fit:contain!important;object-position:left center!important}@media(max-width:850px){.brand{width:165px!important;height:48px!important}.brand img{width:165px!important;height:48px!important}}@media(max-width:390px){.brand{width:135px!important}.brand img{width:135px!important}}
 
-
-
-/* WordPress wraps every menu link in a list item. Preserve the original plain editorial navigation instead of applying the static HTML's last-link button rule to every item. */
+/* WordPress envolve cada item do menu em um <li>. No HTML estático,
+   .nav a:last-of-type alcançava somente um link; aqui alcançava todos
+   e os transformava em botões dourados. */
 .nav .menu>li>a{background:transparent!important;color:var(--ink)!important;padding:0!important;border-radius:0!important;transform:none!important}.nav .menu>li>a::after{display:block!important}.nav .menu>li>a:hover{background:transparent!important;color:var(--gold)!important}.nav .menu>li.current-menu-item>a,.nav .menu>li.current_page_item>a{color:var(--ink)!important}.nav .menu>li.current-menu-item>a::after,.nav .menu>li.current_page_item>a::after{transform:scaleX(1)}
+
+/* Rodapé WordPress: menus administráveis e proporções da referência. */
+.site-footer{background:#59111a!important;padding:48px 0 20px}.footer-grid{grid-template-columns:2.25fr 1.1fr 1.15fr 1.1fr;gap:42px}.footer-logo{width:210px;max-height:62px;object-fit:contain;object-position:left center}.footer-about p{margin-top:20px}.footer-links h3,.legal h3{margin-top:4px}.footer-menu ul{margin:0;padding:0;list-style:none}.footer-menu li{margin:0 0 9px}.footer-menu a{margin:0!important;color:#f2ede5!important;line-height:1.25}.footer-menu a:hover{color:var(--gold)!important;transform:translateX(4px)}.legal p{margin:0 0 13px!important}.copyright{display:flex;justify-content:space-between;align-items:flex-start;margin-top:48px;padding-top:17px}.copyright>span:last-child{text-align:right;line-height:1.8}.copyright a{display:inline!important;margin:0!important;color:#c0a45f!important;font-size:12px!important}@media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;gap:30px}.footer-about{grid-column:1/-1}.copyright{gap:20px;flex-direction:column}.copyright>span:last-child{text-align:left}}
+
