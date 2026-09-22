@@ -6,4 +6,5 @@ function jnt_assets(): void { wp_enqueue_style('jnt-style',get_stylesheet_uri(),
 add_action('wp_enqueue_scripts','jnt_assets');
 function jnt_fallback_menu(): void { echo '<ul class="menu">'; wp_list_pages(['title_li'=>'']); echo '</ul>'; }
 function jnt_category(): string { $categories=get_the_category(); return $categories ? $categories[0]->name : __('Notícias','jewish-news-template'); }
+function jnt_story_image(string $size = 'large', string $fallback = ''): void { if (has_post_thumbnail()) { the_post_thumbnail($size, ['loading' => 'eager']); return; } if ($fallback) { printf('<img src="%s" alt="" loading="eager">', esc_url($fallback)); } }
 
