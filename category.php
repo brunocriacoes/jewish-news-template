@@ -41,12 +41,16 @@ $has_posts = have_posts();
             'prev_text' => '← Anterior',
             'next_text' => 'Próxima →',
         ]);
-        if ($links) :
         ?>
             <nav class="pagination" aria-label="Paginação de <?php echo esc_attr($category->name ?? 'categoria'); ?>">
-                <?php foreach ($links as $link) { echo wp_kses_post($link); } ?>
+                <?php if ($links) : ?>
+                    <?php foreach ($links as $link) { echo wp_kses_post($link); } ?>
+                <?php else : ?>
+                    <span class="page-numbers prev is-disabled" aria-disabled="true">← Anterior</span>
+                    <span class="page-numbers current" aria-current="page">1</span>
+                    <span class="page-numbers next is-disabled" aria-disabled="true">Próxima →</span>
+                <?php endif; ?>
             </nav>
-        <?php endif; ?>
     <?php else : ?>
         <section class="category-empty">
             <span class="kicker"><?php echo esc_html($category->name ?? 'Categoria'); ?></span>
