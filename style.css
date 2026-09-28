@@ -80,3 +80,5 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 .category-lead{border-bottom:0!important}.category-lead .lead-image img,.category-card-image img{object-fit:cover!important;object-position:center center!important}
 
 @media(min-width:561px){.category-lead{align-items:stretch!important}.category-lead .lead-image{height:100%}.category-lead .lead-image img{height:100%!important}}
+
+@media(min-width:851px){.category-lead{grid-template-columns:minmax(0,45fr) minmax(0,55fr)!important}}
