@@ -9,3 +9,10 @@ function jnt_category(): string { $categories=get_the_category(); return $catego
 function jnt_story_image(string $size = 'large', string $fallback = ''): void { if (has_post_thumbnail()) { the_post_thumbnail($size, ['loading' => 'eager']); return; } if ($fallback) { printf('<img src="%s" alt="" loading="eager">', esc_url($fallback)); } }
 function jnt_excerpt_chars(string $text, int $length): string { $text = trim(wp_strip_all_tags($text)); return mb_strlen($text) > $length ? rtrim(mb_substr($text, 0, $length)) . '...' : $text; }
 
+
+function jnt_category_posts_per_page(WP_Query $query): void {
+    if (!is_admin() && $query->is_main_query() && $query->is_category()) {
+        $query->set('posts_per_page', 7);
+    }
+}
+add_action('pre_get_posts', 'jnt_category_posts_per_page');
