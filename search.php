@@ -6,7 +6,7 @@
     </header>
 
     <?php if (have_posts()) : ?>
-        <section class="search-results" aria-label="Resultados da pesquisa">
+        <section class="jnt-search-results" aria-label="Resultados da pesquisa">
             <?php while (have_posts()) : the_post(); ?>
                 <article class="search-result">
                     <span class="kicker"><?php echo esc_html(jnt_category()); ?></span>
