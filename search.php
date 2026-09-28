@@ -16,7 +16,18 @@
                 </article>
             <?php endwhile; ?>
         </section>
-        <?php the_posts_pagination(['prev_text' => '← Anterior', 'next_text' => 'Próxima →']); ?>
+        <?php
+        $links = paginate_links([
+            'type'      => 'array',
+            'prev_text' => '← Anterior',
+            'next_text' => 'Próxima →',
+        ]);
+        if ($links) :
+        ?>
+            <nav class="pagination search-pagination" aria-label="Paginação dos resultados">
+                <?php foreach ($links as $link) { echo wp_kses_post($link); } ?>
+            </nav>
+        <?php endif; ?>
     <?php else : ?>
         <section class="search-empty">
             <span class="kicker">NENHUM RESULTADO</span>
