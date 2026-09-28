@@ -22,7 +22,6 @@
             <span class="kicker">NENHUM RESULTADO</span>
             <h2>Não encontramos publicações para “<?php echo esc_html(get_search_query()); ?>”.</h2>
             <p>Talvez a notícia esteja à espera de outras palavras. Tente um nome, um lugar, um tema ou uma expressão mais ampla.</p>
-            <div class="search-empty__form"><?php get_search_form(); ?></div>
         </section>
     <?php endif; ?>
 </main>
