@@ -82,3 +82,6 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 @media(min-width:561px){.category-lead{align-items:stretch!important}.category-lead .lead-image{height:100%}.category-lead .lead-image img{height:100%!important}}
 
 @media(min-width:851px){.category-lead{grid-template-columns:minmax(0,45fr) minmax(0,55fr)!important}}
+
+/* A seção Articles é exclusivamente textual. */
+.category-lead--text-only{display:block!important;padding-top:48px}.category-lead--text-only article{max-width:760px}.category-lead--text-only h1{font-size:clamp(40px,4.8vw,62px)}
