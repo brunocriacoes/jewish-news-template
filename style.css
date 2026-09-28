@@ -85,3 +85,6 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 
 /* A seção Articles é exclusivamente textual. */
 .category-lead--text-only{display:block!important;padding-top:48px}.category-lead--text-only article{max-width:760px}.category-lead--text-only h1{font-size:clamp(40px,4.8vw,62px)}
+
+/* Communities mantém o destaque padrão, com grade editorial em duas colunas. */
+body.category-communities .category-article-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}@media(max-width:560px){body.category-communities .category-article-grid{grid-template-columns:1fr!important}}
