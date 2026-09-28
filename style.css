@@ -75,3 +75,6 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 .category-article-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:38px 28px!important}.category-article-grid article{min-width:0}@media(max-width:850px){.category-article-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:560px){.category-article-grid{grid-template-columns:1fr!important;gap:28px!important}}
 
 .pagination .is-disabled{color:var(--muted);opacity:.65;cursor:default}
+
+/* A grade começa pelos separadores dos próprios cards, sem linha extra acima dela. */
+.category-lead{border-bottom:0!important}.category-lead .lead-image img,.category-card-image img{object-fit:cover!important;object-position:center center!important}
