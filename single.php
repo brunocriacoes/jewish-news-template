@@ -9,6 +9,10 @@ get_header();
         $primary_category = !empty($categories) ? $categories[0] : null;
         $category_link    = $primary_category ? get_category_link($primary_category->term_id) : home_url('/');
         $caption          = get_the_post_thumbnail_caption();
+        $featured_id      = get_post_thumbnail_id();
+        $featured_url     = $featured_id ? wp_get_attachment_url($featured_id) : '';
+        $post_content     = get_post_field('post_content', get_the_ID());
+        $image_in_content = $featured_id && (false !== strpos($post_content, 'wp-image-' . $featured_id) || ($featured_url && false !== strpos($post_content, $featured_url)));
         $related_args     = array('post_type' => 'post', 'posts_per_page' => 3, 'post__not_in' => array(get_the_ID()), 'post_status' => 'publish', 'ignore_sticky_posts' => true);
 
         if (!empty($categories)) {
@@ -39,7 +43,7 @@ get_header();
                 </div>
             </header>
 
-            <?php if (has_post_thumbnail()) : ?>
+            <?php if (has_post_thumbnail() && !$image_in_content) : ?>
                 <figure class="lead-image shell">
                     <?php the_post_thumbnail('full', array('loading' => 'eager')); ?>
                     <?php if ($caption) : ?><figcaption><?php echo esc_html($caption); ?></figcaption><?php endif; ?>
