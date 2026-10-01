@@ -113,4 +113,4 @@ body.search-results{display:block!important;grid-template-columns:none!important
 
 
 /* A partilha vive no final do artigo; a leitura fica centralizada. */
-.single-page .article-layout{display:flex;justify-content:center;grid-template-columns:none}.single-page .article-body{width:100%}@media(max-width:700px){.single-page .article-layout{display:block}}
+.single-page .article-layout{display:block!important;grid-template-columns:1fr!important}.single-page .article-body{width:100%;max-width:710px;margin:0 auto}@media(max-width:700px){.single-page .article-layout{display:block!important}}
