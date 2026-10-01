@@ -85,6 +85,9 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 /* Communities mantém o destaque padrão, com grade editorial em duas colunas. */
 body.category-communities .category-article-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}@media(max-width:560px){body.category-communities .category-article-grid{grid-template-columns:1fr!important}}
 
+/* Artigo individual: regras posicionadas antes das seções de arquivo. */
+.single-page .article-layout{display:grid!important;grid-template-columns:88px minmax(0,1fr)!important;gap:35px;padding:52px 0 64px}.single-page .article-tools{display:flex;align-items:center;flex-direction:column;gap:10px;padding-top:8px;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase}.single-page .article-body{max-width:710px;color:var(--ink);font:400 19px/1.67 var(--sans)}.single-page .related-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:28px}@media(max-width:700px){.single-page .article-layout{grid-template-columns:1fr!important}.single-page .article-tools{flex-direction:row}.single-page .related-grid{grid-template-columns:1fr!important}}
+
 /* Evita colisão com a classe search-results que o WordPress usa no body. */
 body.search-results{display:block!important;grid-template-columns:none!important;gap:0!important}.jnt-search-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:38px 28px}@media(max-width:850px){.jnt-search-results{grid-template-columns:repeat(2,minmax(0,1fr)}}@media(max-width:560px){.jnt-search-results{grid-template-columns:1fr;gap:28px}}
 
