@@ -71,11 +71,24 @@ get_header();
                 </aside>
                 <div class="article-body entry-content">
                     <?php the_content(); ?>
-                    <?php $tags = get_the_tags(); if ($tags) : ?>
-                        <footer class="article-tags"><span><?php esc_html_e('Topics', 'jewish-news-template'); ?></span>
-                            <?php foreach ($tags as $tag) : ?><a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"><?php echo esc_html($tag->name); ?></a><?php endforeach; ?>
-                        </footer>
-                    <?php endif; ?>
+                    <footer class="article-end-actions">
+                        <?php if (!empty($categories)) : ?>
+                            <div class="article-categories" aria-label="<?php esc_attr_e('Categories', 'jewish-news-template'); ?>">
+                                <span><i class="fa-solid fa-tag" aria-hidden="true"></i> <?php esc_html_e('Categories', 'jewish-news-template'); ?></span>
+                                <div class="article-categories__links">
+                                    <?php foreach ($categories as $category) : ?><a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><?php echo esc_html($category->name); ?></a><?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="article-end-share" aria-label="<?php esc_attr_e('Share article', 'jewish-news-template'); ?>">
+                            <a class="share-link" href="<?php echo esc_url($facebook_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on Facebook', 'jewish-news-template'); ?>"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                            <a class="share-link" href="<?php echo esc_url($twitter_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on X', 'jewish-news-template'); ?>"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                            <a class="share-link" href="<?php echo esc_url($share_url); ?>" aria-label="<?php esc_attr_e('Share by email', 'jewish-news-template'); ?>"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+                            <a class="share-link" href="<?php echo esc_url($linkedin_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on LinkedIn', 'jewish-news-template'); ?>"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                            <a class="share-link" href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on WhatsApp', 'jewish-news-template'); ?>"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                            <button class="share-copy" type="button" data-share-url="<?php echo esc_url($permalink); ?>" aria-label="<?php esc_attr_e('Copy article link', 'jewish-news-template'); ?>"><i class="fa-solid fa-link" aria-hidden="true"></i></button>
+                        </div>
+                    </footer>
                 </div>
             </div>
         </article>
