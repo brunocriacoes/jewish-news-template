@@ -76,7 +76,7 @@ get_header();
                             <div class="article-categories" aria-label="<?php esc_attr_e('Categories', 'jewish-news-template'); ?>">
                                 <span><i class="fa-solid fa-tag" aria-hidden="true"></i> <?php esc_html_e('Categories', 'jewish-news-template'); ?></span>
                                 <div class="article-categories__links">
-                                    <?php foreach ($categories as $category) : ?><a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><?php echo esc_html($category->name); ?></a><?php endforeach; ?>
+                                    <?php foreach ($categories as $category) : ?><a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><i class="fa-solid fa-tag" aria-hidden="true"></i><?php echo esc_html($category->name); ?></a><?php endforeach; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
