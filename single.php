@@ -58,18 +58,7 @@ get_header();
             <?php endif; ?>
 
             <div class="article-layout shell narrow">
-                <aside class="article-tools" aria-label="<?php esc_attr_e('Share article', 'jewish-news-template'); ?>">
-                    <span><?php esc_html_e('Share', 'jewish-news-template'); ?></span>
-                    <div class="share-links">
-                        <a class="share-link" href="<?php echo esc_url($facebook_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on Facebook', 'jewish-news-template'); ?>"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                        <a class="share-link" href="<?php echo esc_url($twitter_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on X', 'jewish-news-template'); ?>"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-                        <a class="share-link" href="<?php echo esc_url($share_url); ?>" aria-label="<?php esc_attr_e('Share by email', 'jewish-news-template'); ?>"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-                        <a class="share-link" href="<?php echo esc_url($linkedin_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on LinkedIn', 'jewish-news-template'); ?>"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
-                        <a class="share-link" href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on WhatsApp', 'jewish-news-template'); ?>"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-                        <button class="share-copy" type="button" data-share-url="<?php echo esc_url($permalink); ?>" aria-label="<?php esc_attr_e('Copy article link', 'jewish-news-template'); ?>"><i class="fa-solid fa-link" aria-hidden="true"></i></button>
-                    </div>
-                </aside>
-                <div class="article-body entry-content">
+<div class="article-body entry-content">
                     <?php the_content(); ?>
                     <footer class="article-end-actions">
                         <?php if (!empty($categories)) : ?>
