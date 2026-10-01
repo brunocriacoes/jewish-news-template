@@ -20,7 +20,14 @@ get_header();
         }
 
         $related_posts = new WP_Query($related_args);
-        $share_url     = 'mailto:?subject=' . rawurlencode(get_the_title()) . '&body=' . rawurlencode(get_permalink());
+        $permalink     = get_permalink();
+        $share_title   = rawurlencode(get_the_title());
+        $share_link    = rawurlencode($permalink);
+        $share_url     = 'mailto:?subject=' . $share_title . '&body=' . $share_link;
+        $facebook_url  = 'https://www.facebook.com/sharer/sharer.php?u=' . $share_link;
+        $twitter_url   = 'https://twitter.com/intent/tweet?text=' . $share_title . '&url=' . $share_link;
+        $linkedin_url  = 'https://www.linkedin.com/sharing/share-offsite/?url=' . $share_link;
+        $whatsapp_url  = 'https://wa.me/?text=' . rawurlencode(get_the_title() . ' ' . $permalink);
         ?>
 
         <nav class="shell breadcrumb" aria-label="<?php esc_attr_e('Breadcrumb', 'jewish-news-template'); ?>">
@@ -53,7 +60,14 @@ get_header();
             <div class="article-layout shell narrow">
                 <aside class="article-tools" aria-label="<?php esc_attr_e('Share article', 'jewish-news-template'); ?>">
                     <span><?php esc_html_e('Share', 'jewish-news-template'); ?></span>
-                    <a href="<?php echo esc_url($share_url); ?>" aria-label="<?php esc_attr_e('Share by email', 'jewish-news-template'); ?>">✉</a>
+                    <div class="share-links">
+                        <a class="share-link" href="<?php echo esc_url($facebook_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on Facebook', 'jewish-news-template'); ?>"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                        <a class="share-link" href="<?php echo esc_url($twitter_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on X', 'jewish-news-template'); ?>"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                        <a class="share-link" href="<?php echo esc_url($share_url); ?>" aria-label="<?php esc_attr_e('Share by email', 'jewish-news-template'); ?>"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+                        <a class="share-link" href="<?php echo esc_url($linkedin_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on LinkedIn', 'jewish-news-template'); ?>"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a class="share-link" href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php esc_attr_e('Share on WhatsApp', 'jewish-news-template'); ?>"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                        <button class="share-copy" type="button" data-share-url="<?php echo esc_url($permalink); ?>" aria-label="<?php esc_attr_e('Copy article link', 'jewish-news-template'); ?>"><i class="fa-solid fa-link" aria-hidden="true"></i></button>
+                    </div>
                 </aside>
                 <div class="article-body entry-content">
                     <?php the_content(); ?>
