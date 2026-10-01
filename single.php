@@ -74,7 +74,6 @@ get_header();
                         <article class="related-story">
                             <a class="related-story__image" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true"><?php jnt_story_image('medium_large', 'https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=900&q=80'); ?></a>
                             <span class="kicker"><?php echo esc_html(jnt_category()); ?></span><h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                            <p><?php echo esc_html(jnt_excerpt_chars(get_the_excerpt(), 130)); ?></p><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date()); ?></time>
                         </article>
                     <?php endwhile; ?>
                 </div>
