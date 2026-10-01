@@ -23,7 +23,7 @@ get_header();
         $share_url     = 'mailto:?subject=' . rawurlencode(get_the_title()) . '&body=' . rawurlencode(get_permalink());
         ?>
 
-        <nav class="shell breadcrumb" aria-label="<?php esc_attr_e('Navegação estrutural', 'jewish-news-template'); ?>">
+        <nav class="shell breadcrumb" aria-label="<?php esc_attr_e('Breadcrumb', 'jewish-news-template'); ?>">
             <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'jewish-news-template'); ?></a><span aria-hidden="true">›</span>
             <?php if ($primary_category) : ?>
                 <a href="<?php echo esc_url($category_link); ?>"><?php echo esc_html($primary_category->name); ?></a><span aria-hidden="true">›</span>
@@ -37,9 +37,9 @@ get_header();
                 <h1><?php the_title(); ?></h1>
                 <?php if (has_excerpt()) : ?><p class="standfirst"><?php echo esc_html(get_the_excerpt()); ?></p><?php endif; ?>
                 <div class="article-meta">
-                    <span><?php printf(esc_html__('Por %1$s', 'jewish-news-template'), esc_html(get_the_author())); ?></span><span aria-hidden="true">•</span>
+                    <span><?php printf(esc_html__('By %1$s', 'jewish-news-template'), esc_html(get_the_author())); ?></span><span aria-hidden="true">•</span>
                     <time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date()); ?></time>
-                    <a class="article-share" href="<?php echo esc_url($share_url); ?>"><?php esc_html_e('Partilhar', 'jewish-news-template'); ?> <span aria-hidden="true">↗</span></a>
+                    <a class="article-share" href="<?php echo esc_url($share_url); ?>"><?php esc_html_e('Share', 'jewish-news-template'); ?> <span aria-hidden="true">↗</span></a>
                 </div>
             </header>
 
@@ -51,14 +51,14 @@ get_header();
             <?php endif; ?>
 
             <div class="article-layout shell narrow">
-                <aside class="article-tools" aria-label="<?php esc_attr_e('Partilhar artigo', 'jewish-news-template'); ?>">
-                    <span><?php esc_html_e('Partilhar', 'jewish-news-template'); ?></span>
-                    <a href="<?php echo esc_url($share_url); ?>" aria-label="<?php esc_attr_e('Partilhar por e-mail', 'jewish-news-template'); ?>">✉</a>
+                <aside class="article-tools" aria-label="<?php esc_attr_e('Share article', 'jewish-news-template'); ?>">
+                    <span><?php esc_html_e('Share', 'jewish-news-template'); ?></span>
+                    <a href="<?php echo esc_url($share_url); ?>" aria-label="<?php esc_attr_e('Share by email', 'jewish-news-template'); ?>">✉</a>
                 </aside>
                 <div class="article-body entry-content">
                     <?php the_content(); ?>
                     <?php $tags = get_the_tags(); if ($tags) : ?>
-                        <footer class="article-tags"><span><?php esc_html_e('Temas', 'jewish-news-template'); ?></span>
+                        <footer class="article-tags"><span><?php esc_html_e('Topics', 'jewish-news-template'); ?></span>
                             <?php foreach ($tags as $tag) : ?><a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"><?php echo esc_html($tag->name); ?></a><?php endforeach; ?>
                         </footer>
                     <?php endif; ?>
@@ -68,7 +68,7 @@ get_header();
 
         <?php if ($related_posts->have_posts()) : ?>
             <section class="related shell" aria-labelledby="related-heading">
-                <div class="section-heading"><h2 id="related-heading"><?php esc_html_e('Mais notícias', 'jewish-news-template'); ?></h2><a href="<?php echo esc_url($category_link); ?>"><?php esc_html_e('Ver todas', 'jewish-news-template'); ?> <span aria-hidden="true">→</span></a></div>
+                <div class="section-heading"><h2 id="related-heading"><?php esc_html_e('More news', 'jewish-news-template'); ?></h2><a href="<?php echo esc_url($category_link); ?>"><?php esc_html_e('View all', 'jewish-news-template'); ?> <span aria-hidden="true">→</span></a></div>
                 <div class="related-grid">
                     <?php while ($related_posts->have_posts()) : $related_posts->the_post(); ?>
                         <article class="related-story">
