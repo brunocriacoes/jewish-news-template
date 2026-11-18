@@ -72,7 +72,7 @@ if ($is_communities_category) {
             'next_text' => 'Next →',
         ]);
         ?>
-            <nav class="pagination" aria-label="Paginação de <?php echo esc_attr($category->name ?? 'categoria'); ?>">
+            <nav class="pagination" aria-label="Pagination for <?php echo esc_attr($category->name ?? 'category'); ?>">
                 <?php if ($links) : ?>
                     <?php foreach ($links as $link) { echo wp_kses_post($link); } ?>
                 <?php else : ?>
