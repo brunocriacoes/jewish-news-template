@@ -82,8 +82,9 @@ function jnt_handle_newsletter_signup(): void {
     }
 
     $confirm_url = add_query_arg(['jnt_newsletter_confirm' => rawurlencode($token)], home_url('/'));
+    $unsubscribe_url = add_query_arg(['jnt_newsletter_unsubscribe' => rawurlencode($token)], home_url('/'));
     $subject = sprintf(__('Confirm your subscription to %s', 'jewish-news-template'), get_bloginfo('name'));
-    $message = sprintf("Hello,\n\nPlease confirm your newsletter subscription by opening this link:\n%s\n\nIf you did not request this, you can safely ignore this email.", $confirm_url);
+    $message = sprintf("Hello,\n\nPlease confirm your newsletter subscription by opening this link:\n%s\n\nIf you did not request this, you can safely ignore this email.\n\nTo cancel this request or unsubscribe later, use this link:\n%s", $confirm_url, $unsubscribe_url);
     wp_mail($email, $subject, $message);
     jnt_newsletter_redirect('check-email');
 }
@@ -102,6 +103,15 @@ function jnt_handle_newsletter_confirmation(): void {
     exit;
 }
 add_action('template_redirect', 'jnt_handle_newsletter_confirmation');
+function jnt_handle_newsletter_unsubscribe(): void {
+    if (empty($_GET['jnt_newsletter_unsubscribe'])) { return; }
+    $token = sanitize_text_field(wp_unslash($_GET['jnt_newsletter_unsubscribe']));
+    global $wpdb;
+    $updated = $wpdb->update(jnt_subscribers_table(), ['status' => 'unsubscribed', 'unsubscribed_at' => current_time('mysql', true)], ['token' => $token]);
+    wp_safe_redirect(add_query_arg('newsletter', $updated !== false ? 'unsubscribed' : 'invalid-confirmation', home_url('/')));
+    exit;
+}
+add_action('template_redirect', 'jnt_handle_newsletter_unsubscribe');
 
 function jnt_register_subscribers_admin_page(): void {
     add_menu_page(__('Newsletter subscribers', 'jewish-news-template'), __('Newsletter', 'jewish-news-template'), 'manage_options', 'jnt-subscribers', 'jnt_render_subscribers_admin_page', 'dashicons-email-alt2', 26);
