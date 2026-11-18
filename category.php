@@ -9,7 +9,7 @@ $featured_community_post = null;
 
 if ($is_communities_category) {
     $candidate = get_page_by_path('the-jewish-community-of-oporto', OBJECT, 'post');
-    if ($candidate instanceof WP_Post && has_category($category->term_id, $candidate)) {
+    if ($candidate instanceof WP_Post) {
         $featured_community_post = $candidate;
     }
 }
