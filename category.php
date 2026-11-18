@@ -4,9 +4,32 @@ get_header();
 $category = get_queried_object();
 $has_posts = have_posts();
 $is_text_only_category = is_category('articles');
+$is_communities_category = is_category('communities');
+$featured_community_post = null;
+
+if ($is_communities_category) {
+    $candidate = get_page_by_path('the-jewish-community-of-oporto', OBJECT, 'post');
+    if ($candidate instanceof WP_Post && has_category($category->term_id, $candidate)) {
+        $featured_community_post = $candidate;
+    }
+}
 ?>
 <main id="conteudo" class="shell category-page">
-    <?php if ($has_posts) : the_post(); ?>
+    <?php if ($featured_community_post) : setup_postdata($featured_community_post); ?>
+        <section class="category-lead" aria-label="Featured post">
+            <a class="lead-image" href="<?php the_permalink(); ?>">
+                <?php jnt_story_image('large', 'https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1200&q=85'); ?>
+            </a>
+            <article>
+                <span class="kicker"><?php echo esc_html(jnt_category()); ?></span>
+                <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+                <p><?php echo esc_html(wp_trim_words(get_the_excerpt(), 26)); ?></p>
+                <a class="gold-button" href="<?php the_permalink(); ?>">Read article <span>→</span></a>
+                <time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date()); ?></time>
+            </article>
+        </section>
+        <?php wp_reset_postdata(); ?>
+    <?php elseif ($has_posts) : the_post(); ?>
         <section class="category-lead<?php echo $is_text_only_category ? ' category-lead--text-only' : ''; ?>" aria-label="Postagem em destaque">
             <?php if (!$is_text_only_category) : ?>
                 <a class="lead-image" href="<?php the_permalink(); ?>">
