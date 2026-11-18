@@ -25,6 +25,7 @@ add_action('pre_get_posts', 'jnt_category_posts_per_page');
 function jnt_fallback_menu(): void { echo '<ul class="menu">'; wp_list_pages(['title_li'=>'']); echo '</ul>'; }
 function jnt_category(): string { $categories=get_the_category(); return $categories ? $categories[0]->name : __('News','jewish-news-template'); }
 function jnt_post_date(?int $post_id = null): string { $timestamp = get_post_timestamp($post_id); return $timestamp ? gmdate('F j, Y', $timestamp) : ''; }
+function jnt_author_nickname(): string { $nickname = get_the_author_meta('nickname'); return $nickname ?: get_the_author(); }
 function jnt_story_image(string $size = 'large', string $fallback = ''): void { if (has_post_thumbnail()) { the_post_thumbnail($size, ['loading' => 'eager']); return; } if ($fallback) { printf('<img src="%s" alt="" loading="eager">', esc_url($fallback)); } }
 function jnt_excerpt_chars(string $text, int $length): string { $text = trim(wp_strip_all_tags($text)); return mb_strlen($text) > $length ? rtrim(mb_substr($text, 0, $length)) . '...' : $text; }
 
