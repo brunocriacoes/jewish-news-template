@@ -44,7 +44,7 @@ get_header();
                 <h1><?php the_title(); ?></h1>
                 <?php if (has_excerpt()) : ?><p class="standfirst"><?php echo esc_html(get_the_excerpt()); ?></p><?php endif; ?>
                 <div class="article-meta">
-                    <span><?php printf(esc_html__('By %1$s', 'jewish-news-template'), esc_html(get_the_author())); ?></span><span aria-hidden="true">•</span>
+                    <span><?php printf(esc_html__('By %1$s', 'jewish-news-template'), esc_html(jnt_author_nickname())); ?></span><span aria-hidden="true">•</span>
                     <time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(jnt_post_date()); ?></time>
                     <a class="article-share" href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Share', 'jewish-news-template'); ?> <span aria-hidden="true">↗</span></a>
                 </div>
