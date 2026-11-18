@@ -45,6 +45,8 @@ if ($is_communities_category) {
             </article>
         </section>
 
+    <?php endif; ?>
+
         <?php if (have_posts()) : ?>
             <section class="article-grid category-article-grid" aria-label="Mais publicações em <?php echo esc_attr($category->name ?? 'categoria'); ?>">
                 <?php while (have_posts()) : the_post(); ?>
@@ -79,7 +81,7 @@ if ($is_communities_category) {
                     <span class="page-numbers next is-disabled" aria-disabled="true">Próxima →</span>
                 <?php endif; ?>
             </nav>
-    <?php else : ?>
+    <?php if (!$featured_community_post && !$has_posts) : ?>
         <section class="category-empty">
             <span class="kicker"><?php echo esc_html($category->name ?? 'Categoria'); ?></span>
             <h1>Não há publicações nesta categoria.</h1>
