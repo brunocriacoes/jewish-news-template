@@ -46,5 +46,28 @@
       menuButton.setAttribute('aria-expanded', 'false');
     }));
   }
+
+  const cookieBanner = document.querySelector('[data-cookie-banner]');
+  const cookieSettings = document.querySelectorAll('[data-cookie-settings]');
+  const cookieName = 'jnt-cookie-consent';
+  const getCookie = (name) => document.cookie.split('; ').find((item) => item.startsWith(`${name}=`))?.split('=').slice(1).join('=');
+  const setCookie = (value) => {
+    const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `${cookieName}=${encodeURIComponent(value)}; path=/; max-age=31536000; SameSite=Lax${secure}`;
+  };
+  const showCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = false; };
+  const hideCookieBanner = () => { if (cookieBanner) cookieBanner.hidden = true; };
+
+  if (cookieBanner && !getCookie(cookieName)) showCookieBanner();
+  cookieBanner?.querySelectorAll('[data-cookie-choice]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const choice = button.dataset.cookieChoice === 'all' ? 'all' : 'none';
+      setCookie(choice);
+      document.documentElement.dataset.cookieConsent = choice;
+      window.dispatchEvent(new CustomEvent('jnt:cookie-consent', { detail: { choice } }));
+      hideCookieBanner();
+    });
+  });
+  cookieSettings.forEach((button) => button.addEventListener('click', showCookieBanner));
 })();
 
