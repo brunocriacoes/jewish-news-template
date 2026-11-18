@@ -21,9 +21,9 @@ const publicationDates = {
   'Hoje, 08:40': '11 de agosto de 2026',
   'Hoje, 07:15': '11 de agosto de 2026',
   'Ontem, 18:10': '10 de agosto de 2026',
-  'Há 2 horas': '11 de agosto de 2026',
-  'Há 3 horas': '11 de agosto de 2026',
-  'Há 5 horas': '11 de agosto de 2026'
+  '2 hours ago': 'August 11, 2026',
+  '3 hours ago': 'August 11, 2026',
+  '5 hours ago': 'August 11, 2026'
 };
 document.querySelectorAll('.byline').forEach(item => {
   Object.entries(publicationDates).forEach(([time, date]) => {
@@ -33,31 +33,31 @@ document.querySelectorAll('.byline').forEach(item => {
 
 document.querySelector('.hero-side').insertAdjacentHTML('beforeend', `
   <article class="compact-story">
-    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80" alt="Pessoas conversando em encontro comunitário">
-    <div><span class="kicker">ARTIGOS</span><h2>Histórias que ligam gerações da comunidade portuguesa</h2><span class="byline">9 de agosto de 2026</span></div>
+    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80" alt="People talking at a community gathering">
+    <div><span class="kicker">FEATURES</span><h2>Stories connecting generations of the Portuguese community</h2><span class="byline">August 9, 2026</span></div>
   </article>
   <article class="compact-story">
     <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=700&q=80" alt="Livros em uma biblioteca">
-    <div><span class="kicker">MUSEUS</span><h2>Um novo olhar sobre o património judaico português</h2><span class="byline">8 de agosto de 2026</span></div>
+    <div><span class="kicker">MUSEUMS</span><h2>A new perspective on Portuguese Jewish heritage</h2><span class="byline">August 8, 2026</span></div>
   </article>
 `);
 
 document.querySelector('.opinion .read-more').insertAdjacentHTML('beforebegin', `
-  <article><span class="kicker">COMUNIDADES</span><h3>Memória, encontro e futuro em cada comunidade</h3><p>Por Equipa PJN</p></article>
+  <article><span class="kicker">COMMUNITIES</span><h3>Memory, encounter and future in every community</h3><p>By the PJN team</p></article>
 `);
 
 const opinionSummaries = [
-  'Uma reflexão sobre escuta e construção coletiva.',
+  'A reflection on listening and collective building.',
   'Uma leitura breve sobre preservar o que importa.',
   'Ideias para compreender melhor o presente.',
-  'Histórias que conectam passado e futuro.'
+  'Stories connecting the past and the future.'
 ];
 document.querySelectorAll('.opinion article').forEach((article, index) => {
   article.insertAdjacentHTML('beforeend', `<p class="opinion-summary">${opinionSummaries[index]}</p><a class="opinion-link" href="#">Read article →</a>`);
 });
 
 document.querySelector('.culture-grid').insertAdjacentHTML('beforeend', `
-  <article class="photo-card"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80" alt="Livro aberto"><span class="kicker">HISTÓRIA</span><h3>Novas perspetivas sobre a herança portuguesa</h3></article>
+  <article class="photo-card"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80" alt="Open book"><span class="kicker">HISTORY</span><h3>New perspectives on Portuguese heritage</h3></article>
 `);
 
 document.querySelectorAll('.photo-card h3').forEach(title => {
