@@ -12,6 +12,18 @@ function jnt_excerpt_chars(string $text, int $length): string { $text = trim(wp_
 
 function jnt_category_posts_per_page(WP_Query $query): void {
     if (!is_admin() && $query->is_main_query() && $query->is_category()) {
+        if ($query->is_category('communities')) {
+            $featured = get_page_by_path('the-jewish-community-of-oporto', OBJECT, 'post');
+
+            // 49 cards + o destaque fixo mantêm 50 posts visíveis por página.
+            $query->set('posts_per_page', 49);
+            if ($featured instanceof WP_Post) {
+                $query->set('post__not_in', array($featured->ID));
+            }
+
+            return;
+        }
+
         $query->set('posts_per_page', 7);
     }
 }
