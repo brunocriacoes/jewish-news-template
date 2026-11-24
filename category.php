@@ -8,7 +8,7 @@ $is_communities_category = is_category('communities');
 $featured_community_post = null;
 
 if ($is_communities_category) {
-    $candidate = get_page_by_path('the-jewish-communities-of-portugal', OBJECT, ['post', 'page']);
+    $candidate = jnt_communities_featured_post();
     if ($candidate instanceof WP_Post) {
         $featured_community_post = $candidate;
     }
