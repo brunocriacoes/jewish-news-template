@@ -7,7 +7,7 @@ add_action('wp_enqueue_scripts','jnt_assets');
 function jnt_category_posts_per_page(WP_Query $query): void {
     if (!is_admin() && $query->is_main_query() && $query->is_category()) {
         if ($query->is_category('communities')) {
-            $featured = get_page_by_path('the-jewish-communities-of-portugal', OBJECT, 'post');
+            $featured = get_page_by_path('the-jewish-communities-of-portugal', OBJECT, ['post', 'page']);
 
             // 49 cards + o destaque fixo mantêm 50 posts visíveis por página.
             $query->set('posts_per_page', 49);
