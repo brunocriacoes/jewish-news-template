@@ -8,14 +8,20 @@ $is_communities_category = is_category('communities');
 $featured_community_post = null;
 
 if ($is_communities_category) {
-    $candidate = jnt_communities_featured_post();
+    $featured_posts = get_posts([
+        'name' => 'the-jewish-communities-of-portugal',
+        'post_type' => 'any',
+        'post_status' => 'publish',
+        'numberposts' => 1,
+    ]);
+    $candidate = $featured_posts[0] ?? null;
     if ($candidate instanceof WP_Post) {
         $featured_community_post = $candidate;
     }
 }
 ?>
 <main id="conteudo" class="shell category-page">
-    <?php if ($featured_community_post) : setup_postdata($featured_community_post); ?>
+    <?php if ($featured_community_post) : global $post; $post = $featured_community_post; setup_postdata($post); ?>
         <section class="category-lead" aria-label="Featured post">
             <a class="lead-image" href="<?php the_permalink(); ?>">
                 <?php jnt_story_image('large', 'https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1200&q=85'); ?>
