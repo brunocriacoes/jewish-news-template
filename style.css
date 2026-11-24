@@ -85,6 +85,9 @@ a,.support-button,.newsletter button,.icon-button{transition:color .2s ease,back
 /* Communities mantém o destaque padrão, com grade editorial em duas colunas. */
 body.category-communities .category-article-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}@media(max-width:560px){body.category-communities .category-article-grid{grid-template-columns:1fr!important}}
 
+/* Museums usa duas colunas na tela grande, mantendo uma coluna no celular. */
+body.category-museums .category-article-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}@media(max-width:560px){body.category-museums .category-article-grid{grid-template-columns:1fr!important}}
+
 /* Evita colisão com a classe search-results que o WordPress usa no body.
    A grade da busca é declarada abaixo, junto de seus pontos de quebra. */
 body.search-results{display:block!important;grid-template-columns:none!important;gap:0!important}
