@@ -4,21 +4,16 @@ function jnt_setup(): void { add_theme_support('title-tag'); add_theme_support('
 add_action('after_setup_theme','jnt_setup');
 function jnt_assets(): void { wp_enqueue_style('jnt-style',get_stylesheet_uri(),[], (string) filemtime(get_stylesheet_directory() . '/style.css')); wp_enqueue_style('jnt-fontawesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css',[], '6.7.2'); wp_enqueue_script('jnt-theme',get_theme_file_uri('/assets/js/theme.js'),[], (string) filemtime(get_theme_file_path('/assets/js/theme.js')),true); if (is_single()) { wp_enqueue_script('jnt-share',get_theme_file_uri('/assets/js/share.js'),[], (string) filemtime(get_theme_file_path('/assets/js/share.js')),true); } }
 add_action('wp_enqueue_scripts','jnt_assets');
-function jnt_communities_featured_post(): ?WP_Post {
-    $posts = get_posts([
-        'name' => 'the-jewish-communities-of-portugal',
-        'post_type' => 'any',
-        'post_status' => 'publish',
-        'numberposts' => 1,
-        'suppress_filters' => false,
-    ]);
-
-    return $posts[0] ?? null;
-}
 function jnt_category_posts_per_page(WP_Query $query): void {
     if (!is_admin() && $query->is_main_query() && $query->is_category()) {
         if ($query->is_category('communities')) {
-            $featured = jnt_communities_featured_post();
+            $featured_posts = get_posts([
+                'name' => 'the-jewish-communities-of-portugal',
+                'post_type' => 'any',
+                'post_status' => 'publish',
+                'numberposts' => 1,
+            ]);
+            $featured = $featured_posts[0] ?? null;
 
             // 49 cards + o destaque fixo mantêm 50 posts visíveis por página.
             $query->set('posts_per_page', 49);
