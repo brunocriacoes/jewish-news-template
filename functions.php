@@ -28,6 +28,33 @@ function jnt_category_posts_per_page(WP_Query $query): void {
     }
 }
 add_action('pre_get_posts', 'jnt_category_posts_per_page');
+// Priority is optional and applies only to the Museums category archive.
+function jnt_museum_priority_box(): void {
+    add_meta_box('jnt_museum_priority', 'Museum priority', 'jnt_museum_priority_field', 'post', 'side');
+}
+add_action('add_meta_boxes', 'jnt_museum_priority_box');
+function jnt_museum_priority_field(WP_Post $post): void {
+    wp_nonce_field('jnt_save_museum_priority', 'jnt_museum_priority_nonce');
+    $priority = get_post_meta($post->ID, '_jnt_museum_priority', true);
+    echo '<label for="jnt-museum-priority">Position in the Museums category</label>';
+    echo '<input type="number" min="1" step="1" id="jnt-museum-priority" name="jnt_museum_priority" value="' . esc_attr($priority) . '" style="width:100%;margin-top:8px">';
+    echo '<p>Lower numbers appear first. Leave empty for no priority.</p>';
+}
+function jnt_save_museum_priority(int $post_id): void {
+    if (!isset($_POST['jnt_museum_priority_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['jnt_museum_priority_nonce'])), 'jnt_save_museum_priority') || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !current_user_can('edit_post', $post_id)) { return; }
+    $value = isset($_POST['jnt_museum_priority']) ? trim(wp_unslash($_POST['jnt_museum_priority'])) : '';
+    if ($value === '') { delete_post_meta($post_id, '_jnt_museum_priority'); return; }
+    if (preg_match('/^[1-9][0-9]*$/', $value)) { update_post_meta($post_id, '_jnt_museum_priority', (string) min((int) $value, 2147483647)); }
+}
+add_action('save_post_post', 'jnt_save_museum_priority');
+function jnt_museum_priority_order(array $clauses, WP_Query $query): array {
+    if (is_admin() || !$query->is_main_query() || !$query->is_category('museums')) { return $clauses; }
+    global $wpdb;
+    $clauses['join'] .= " LEFT JOIN {$wpdb->postmeta} AS jnt_museum_priority ON ({$wpdb->posts}.ID = jnt_museum_priority.post_id AND jnt_museum_priority.meta_key = '_jnt_museum_priority')";
+    $clauses['orderby'] = "CASE WHEN jnt_museum_priority.meta_value REGEXP '^[1-9][0-9]*$' THEN 0 ELSE 1 END ASC, CAST(jnt_museum_priority.meta_value AS UNSIGNED) ASC, {$wpdb->posts}.post_date DESC, {$wpdb->posts}.ID DESC";
+    return $clauses;
+}
+add_filter('posts_clauses', 'jnt_museum_priority_order', 10, 2);
 function jnt_fallback_menu(): void { echo '<ul class="menu">'; wp_list_pages(['title_li'=>'']); echo '</ul>'; }
 function jnt_category(): string { $categories=get_the_category(); return $categories ? $categories[0]->name : __('News','jewish-news-template'); }
 function jnt_post_date(?int $post_id = null): string { $timestamp = get_post_timestamp($post_id); return $timestamp ? gmdate('F j, Y', $timestamp) : ''; }
